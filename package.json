@@ -8,12 +8,13 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "^4.18.2",
     "handlebars": "^4.7.8",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^5.13.22",
     "morgan": "~1.9.1",
+    "request": "^2.88.2",
     "seedgoose": "^2.0.15"
   },
   "devDependencies": {
