@@ -1,15 +1,13 @@
 const request = require('request');
 const apiOptions = {
- server: 'http://localhost:3000'
+    server: 'http://localhost:3000'
 }
-
-//const fs = require('fs');
-//const trips = JSON.parse(fs.readFileSync('./data/trips.json', 'utf8'));
 
 // internal method to render the travel list
 const renderTravelList = (req, res, responseBody) => {
     let message = null;
     let pageTitle = process.env.npm_package_description = ' - Travel';
+
     if (!(responseBody instanceof Array)) {
         message = 'API lookup error';
         responseBody = [];
@@ -19,14 +17,12 @@ const renderTravelList = (req, res, responseBody) => {
         }
     }
     
-    res.render('travel',
-        {
+    res.render('travel', {
             title: pageTitle,
             trips: responseBody,
             message
-        }
-    );
-}
+    });
+};
 
 /* GET travel view */
 const travelList = (req, res) => {
@@ -37,6 +33,7 @@ const travelList = (req, res) => {
         json: {},
     };
     console.info('>> travelController.travelList calling ' + requestOptions.url);
+
     request(
         requestOptions,
         (err, { statusCode }, body) => {

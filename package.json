@@ -1,6 +1,8 @@
 {
   "name": "travlr",
   "version": "0.0.0",
+  "description": "Travlr Getaways",
+  "author": "Jon Way",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -11,12 +13,14 @@
     "express": "^4.18.2",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
-    "mongoose": "^8.1.1",
+    "mongoose": "^8.1.2",
     "morgan": "~1.9.1",
+    "nodemon": "^3.0.3",
+    "request": "^2.88.2",
     "seedgoose": "^2.0.2"
   },
   "devDependencies": {
     "hbs": "^4.2.0",
-    "seedgoose":"^2.0.2"
+    "seedgoose": "^2.0.2"
   }
 }

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose'); //.set('debut, true);
-const Model = mongoose.model('trips');
+const model = mongoose.model('trips');
 
 // GET: /trips - lists all trips
 const tripsList = async (req, res) => {
-    Model
+    model
         .find({}) // empty filter for all
         .exec((err, trips) => {
             if (!trips) {
@@ -24,7 +24,7 @@ const tripsList = async (req, res) => {
 
 // GET: /trips/:tripCode - returns a single trip
 const tripsFindCode = async (req, res) => {
-    Model
+    model
         .find({ 'code': req.params.tripCode })
         .exec((err, trip) => {
             if (!trip) {
