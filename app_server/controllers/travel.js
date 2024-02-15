@@ -3,10 +3,10 @@ const apiOptions = {
     server: 'http://localhost:3000'
 }
 
-// internal method to render the travel list
+// internal method to render the travel list view
 const renderTravelList = (req, res, responseBody) => {
     let message = null;
-    let pageTitle = process.env.npm_package_description = ' - Travel';
+    let pageTitle = process.env.npm_package_description + ' - Travel';
 
     if (!(responseBody instanceof Array)) {
         message = 'API lookup error';
@@ -24,7 +24,7 @@ const renderTravelList = (req, res, responseBody) => {
     });
 };
 
-/* GET travel view */
+/* GET travel list view */
 const travelList = (req, res) => {
     const path = '/api/trips';
     const requestOptions = {
@@ -32,6 +32,7 @@ const travelList = (req, res) => {
         method: 'GET',
         json: {},
     };
+
     console.info('>> travelController.travelList calling ' + requestOptions.url);
 
     request(
@@ -42,7 +43,7 @@ const travelList = (req, res) => {
             }
             renderTravelList(req, res, body);
         }
-    );
+    )
 };
 
 module.exports = {
