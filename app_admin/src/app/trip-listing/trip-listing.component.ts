@@ -41,6 +41,7 @@ export class TripListingComponent implements OnInit {
   }
 
   public isLoggedIn(): boolean {
+    console.log('Is logged in');
     return this.authService.isLoggedIn();
   }
 
