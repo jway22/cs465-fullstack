@@ -6,7 +6,9 @@ import { User } from '../models/user';
 import { AuthResponse } from '../models/authresponse';
 import { BROWSER_STORAGE } from '../storage';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TripDataService {
   
   constructor(private http: Http,
@@ -50,14 +52,8 @@ export class TripDataService {
       .toPromise()
       .then(response => response.json() as Trip[])
       .catch(this.handleError);
-   }
-   
-
-  private handleError(error: any): Promise<any> {
-      console.error('Something has gone wrong', error); // for demo purposes only
-      return Promise.reject(error.message || error);
   }
-
+   
   public login(user: User): Promise<AuthResponse> {
       return this.makeAuthApiCall('login', user);
   }
@@ -74,5 +70,13 @@ export class TripDataService {
       .then(response => response.json() as AuthResponse)
       .catch(this.handleError);
   }
-    
+
+  public logout(): void {
+    this.storage.removeItem('travlr-token');        1
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('Something has gone wrong', error); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
 }
