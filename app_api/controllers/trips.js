@@ -1,10 +1,10 @@
 const mongoose = require('mongoose'); //.set('debut, true);
-const model = mongoose.model('trips');
+const Trip = mongoose.model('trips');
 const User = mongoose.model('users');
 
 // GET: /trips - lists all trips
 const tripsList = async (req, res) => {
-    model
+    Trip
         .find({}) // empty filter for all
         .exec((err, trips) => {
             if (!trips) {
@@ -25,7 +25,7 @@ const tripsList = async (req, res) => {
 
 // GET: /trips/:tripCode - returns a single trip
 const tripsFindCode = async (req, res) => {
-    model
+    Trip
         .find({ 'code': req.params.tripCode })
         .exec((err, trip) => {
             if (!trip) {
@@ -44,34 +44,10 @@ const tripsFindCode = async (req, res) => {
         });
 };
 
-const getUser = (req, res, callback) => {
-    if (req.payload && req.auth.email) {
-        User
-            .findOne({ email: req.auth.email })
-            .exec((err, user) => {
-                if (!user) {
-                    return res
-                        .status(404)
-                        .json({ "message": "User not found" });
-                } else if (err) {
-                    console.log(err);
-                    return res
-                        .status(404)
-                        .json(err);
-                }
-                callback(req, res, user.name);
-            });
-    } else {
-        return res
-            .status(404)
-            .json({ "message": "User not found" });
-    }
-};
-
 const tripsAddTrip = async (req, res) => {
     getUser(req, res, 
         (req, res) => {
-        model
+        Trip
             .create({
                 code: req.body.code,
                 name: req.body.name,
@@ -101,7 +77,7 @@ const tripsUpdateTrip = async (req, res) => {
     console.log(req.body);
     getUser(req, res,
         (req, res) => {
-        model
+        Trip
             .findOneAndUpdate({ 'code': req.params.tripCode }, {
                 code: req.body.code,
                 name: req.body.name,
@@ -135,6 +111,30 @@ const tripsUpdateTrip = async (req, res) => {
             });
         }
     );
+};
+
+const getUser = (req, res, callback) => {
+    if (req.payload && req.payload.emaial) {
+        User
+            .findOne({ email: req.payload})
+            .exec((err, user) => {
+                if (!user) {
+                    return res
+                        .status(404)
+                        .json({ "message": "User not found" });
+                } else if (err) {
+                    console.log(err);
+                    return res
+                        .status(404)
+                        .json(err);
+                }
+                callback(req, res, user.name);
+            });
+    } else {
+        return res
+            .status(404)
+            .json({ "message": "User not found" });
+    }
 };
 
 module.exports = {
