@@ -15,7 +15,7 @@
     "express": "^4.18.2",
     "express-jwt": "^8.4.1",
     "hbs": "~4.0.4",
-    "heroku": "^7.15.2",
+    "heroku": "^0.2.0",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^5.9.1",
@@ -27,6 +27,7 @@
     "seedgoose": "^2.0.15"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^17.2.3",
     "hbs": "^4.2.0",
     "seedgoose": "^2.0.2"
   }
